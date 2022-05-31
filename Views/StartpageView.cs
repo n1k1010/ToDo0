@@ -19,7 +19,8 @@ namespace ToDoApp.Views
     public partial class StartpageView : Form
     {
         readonly string _dateFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
-        readonly DateTimePicker DTPReminderPicker = new DateTimePicker();
+        readonly DateTimePicker DTPicker = new DateTimePicker();
+        readonly CheckBox CBDeleteReminder = new CheckBox();
         //readonly bedeutet dass man eine membervariable als Konstante setzen kann, diese aber anders als wenn
         //man den modifier const benutzt, zur Laufzeit kompiliert wird. Das heißt, man kann ihren Wert entweder im Konstruktor oder
         //bei der Deklaration setzen. Unterschied zwischen CompileZeit und LaufZeit. (Exceptions sind Laufzeitfehler,
@@ -61,17 +62,20 @@ namespace ToDoApp.Views
             //LblMainTitle ist ein hoffentlich weiter unten noch definiertes Label, was uns den Titel der
             //StartpageView anzeigt (.Text) Der nächste Ausdruck ist einfach die Today Property von DateTime und
             //macht das gewünschte Format (dem kann man auch Argumente übergeben() ). Wieder Stringinterpolation.
-            GridViewToDos.Controls.Add(DTPReminderPicker);
+            GridViewToDos.Controls.Add(DTPicker);
+            GridViewToDos.Controls.Add(CBDeleteReminder);
             //ne Gridview die wir hoffentlich weiter unten noch deklarieren auf der wir Controls aufrufen.
             //Controls gibt eine Sammlung von Kind-controls aus, die sich innerhalb der allgemeinen Control befinden.
             //(ja etwas weird, muss ich nochmal nachlesen)
-            DTPReminderPicker.Visible = false;
+            DTPicker.Visible = false;
+            CBDeleteReminder.Visible = false;
             //Das Control für den ReminderPicker ist nicht sichtbar
-            DTPReminderPicker.Format = DateTimePickerFormat.Custom;
+            DTPicker.Format = DateTimePickerFormat.Custom;
             //Macht, dass man das Format selbst bestimmen kann
-            DTPReminderPicker.CustomFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
+            DTPicker.CustomFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
             //sagt, wie das Format von DTPReminderPicker aussieht (warum das zwei sind weiß ich noch nicht)
-            DTPReminderPicker.Leave += new EventHandler(HandleReminderChange);
+            DTPicker.Leave += new EventHandler(HandleReminderChange);
+            CBDeleteReminder.CheckedChanged += CBDeleteReminder_CheckedChanged; 
             //erzeugt einen neuen Eventhandler auf der Property Leave auf (wir hatten einen Loop gebaut, da zwei Events
             //auf den gleichen Handler gezeigt haben
             GridViewToDos.Scroll += DatagridView_Scroll;
@@ -84,6 +88,12 @@ namespace ToDoApp.Views
             //macht muss ich noch nachgucken.
 
         }
+
+        private void CBDeleteReminder_CheckedChanged(object sender, EventArgs e)
+        {
+            DTPicker.Value = DateTime.MinValue;
+        }
+
         private Tuple<int, int> _lastCellClicked;
         //ein Tupel als Instanzvariable _lastCellClicked
 
@@ -107,14 +117,16 @@ namespace ToDoApp.Views
             // wenn die 5.Spalte angeklickt wurde:
             {
                 case 4: // Column index of needed dateTimePicker cell
-
                     rectangle = GridViewToDos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true); //  
                     //macht ein rectangle für die erfasste Zelle auf
-                    DTPReminderPicker.Size = new Size(rectangle.Width, rectangle.Height); //  
+                    DTPicker.Size = new Size(rectangle.Width-rectangle.Height, rectangle.Height); //  
                     //Definiert die size für den Reminderpicker, weil rectangle die Parameter length und width braucht
-                    DTPReminderPicker.Location = new Point(rectangle.X, rectangle.Y); //  
+                    CBDeleteReminder.Size = new Size(rectangle.Height, rectangle.Height);
+                    DTPicker.Location = new Point(rectangle.X+rectangle.Height, rectangle.Y); //  
+                    CBDeleteReminder.Location = new Point(rectangle.X, rectangle.Y); //  
                     //Definiert den Point für den Reminderpicker, weil rectangle den Parameter location braucht
-                    DTPReminderPicker.Visible = true;
+                    DTPicker.Visible = true;
+                    CBDeleteReminder.Visible = true;
                     // macht den Reminder sichtbar
 
                     break;
@@ -125,14 +137,16 @@ namespace ToDoApp.Views
         private void DatagridView_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         //sagt einfach nur, dass wenn sich die Breite der Spalte ändert, der ReminderPicker nicht sichtbar ist
         {
-            DTPReminderPicker.Visible = false;
+            DTPicker.Visible = false;
+            CBDeleteReminder.Visible = false;
 
         }
 
         private void DatagridView_Scroll(object sender, ScrollEventArgs e)
         //sagt einfach nur, dass wenn in der Gridview gescrollt wird, der ReminderPicker nicht sichtbar ist
         {
-            DTPReminderPicker.Visible = false;
+            DTPicker.Visible = false;
+            CBDeleteReminder.Visible = false;
         }
 
         private void TodosChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -219,7 +233,6 @@ namespace ToDoApp.Views
                 case 2:
                     todo.DueDate = DateTime.Now; //TODO: Parse Date / use DateTimePicker
                     break;
-
                 case 3:
                     todo.State = (States)value;
                     break;

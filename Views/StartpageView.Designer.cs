@@ -46,6 +46,7 @@ namespace ToDoApp.Views
             this.BtnSearch = new System.Windows.Forms.Button();
             this.LblGridView = new System.Windows.Forms.Label();
             this.LblMainTitle = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewToDos)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,6 @@ namespace ToDoApp.Views
             this.GridViewToDos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewToDos.Location = new System.Drawing.Point(12, 97);
             this.GridViewToDos.Name = "GridViewToDos";
-            this.GridViewToDos.ReadOnly = false;
             this.GridViewToDos.RowHeadersVisible = false;
             this.GridViewToDos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.GridViewToDos.ShowCellToolTips = false;
@@ -139,7 +139,7 @@ namespace ToDoApp.Views
             // BtnSearch
             // 
             this.BtnSearch.Location = new System.Drawing.Point(713, 27);
-            this.BtnSearch.Name = "button3";
+            this.BtnSearch.Name = "BtnSearch";
             this.BtnSearch.Size = new System.Drawing.Size(75, 23);
             this.BtnSearch.TabIndex = 6;
             this.BtnSearch.Text = "Search";
@@ -149,7 +149,7 @@ namespace ToDoApp.Views
             // 
             this.LblGridView.AutoSize = true;
             this.LblGridView.Location = new System.Drawing.Point(12, 81);
-            this.LblGridView.Name = "label1";
+            this.LblGridView.Name = "LblGridView";
             this.LblGridView.Size = new System.Drawing.Size(84, 13);
             this.LblGridView.TabIndex = 7;
             this.LblGridView.Text = "Tasks for Today";
@@ -158,16 +158,27 @@ namespace ToDoApp.Views
             // 
             this.LblMainTitle.AutoSize = true;
             this.LblMainTitle.Location = new System.Drawing.Point(329, 36);
-            this.LblMainTitle.Name = "label2";
+            this.LblMainTitle.Name = "LblMainTitle";
             this.LblMainTitle.Size = new System.Drawing.Size(141, 13);
             this.LblMainTitle.TabIndex = 8;
             this.LblMainTitle.Text = "DAILY LIST TO DO TODAY";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(650, 48);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(22, 22);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // StartpageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.LblMainTitle);
             this.Controls.Add(this.LblGridView);
             this.Controls.Add(this.BtnSearch);
@@ -202,6 +213,7 @@ namespace ToDoApp.Views
         private Button BtnSearch;
         private Label LblGridView;
         private Label LblMainTitle;
+        private CheckBox checkBox1;
     }
 
 }
