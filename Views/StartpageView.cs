@@ -14,10 +14,11 @@ using ToDoApp.Models;
 using ToDoApp.Utils;
 
 namespace ToDoApp.Views
-    //gleicher namespace, andere view, aber eine view.
+//gleicher namespace, andere view, aber eine view.
 {
     public partial class StartpageView : Form
     {
+        readonly string _dateFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
         readonly DateTimePicker DTPReminderPicker = new DateTimePicker();
         //readonly bedeutet dass man eine membervariable als Konstante setzen kann, diese aber anders als wenn
         //man den modifier const benutzt, zur Laufzeit kompiliert wird. Das heißt, man kann ihren Wert entweder im Konstruktor oder
@@ -35,9 +36,9 @@ namespace ToDoApp.Views
         private ObservableCollection<ToDo> _todos;
         //Wieder das gleiche wie in TaskView, nur dass wir die Collection da _toDos genannt haben. Warum frage ich Ivo nachher.
         public StartpageView(ObservableCollection<ToDo> toDos)
-            //Wieder Methodendeklaration mit neuer Instanz von Collection der Klasse ToDo, die genauso heißt wie
-            //die der TaskView (toDos)
-            //Hier beginnt die Methodensignatur
+        //Wieder Methodendeklaration mit neuer Instanz von Collection der Klasse ToDo, die genauso heißt wie
+        //die der TaskView (toDos)
+        //Hier beginnt die Methodensignatur
         {
             _todos = toDos;
             //hier wieder Variablenzuweisung der ObservableCollection mit der Variable toDos
@@ -93,7 +94,7 @@ namespace ToDoApp.Views
         //Argument des Tupels lastCellClicked hält. Dort befindet sich nämlich der gemeinte ReminderEintrag.
         {
             GridViewToDos_CellValueChanged(sender, new DataGridViewCellEventArgs(4, _lastCellClicked.Item2));
-            
+
         }
 
         private void DatagridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -103,10 +104,10 @@ namespace ToDoApp.Views
             //Das Tupel gibt den Zeilenindex der zuletzt geklickten Zelle aus, den wir brauchen um den HandleReminderChange
             //auszulösen.
             switch (e.ColumnIndex)
-                // wenn die 5.Spalte angeklickt wurde:
+            // wenn die 5.Spalte angeklickt wurde:
             {
                 case 4: // Column index of needed dateTimePicker cell
-                    
+
                     rectangle = GridViewToDos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true); //  
                     //macht ein rectangle für die erfasste Zelle auf
                     DTPReminderPicker.Size = new Size(rectangle.Width, rectangle.Height); //  
@@ -125,7 +126,7 @@ namespace ToDoApp.Views
         //sagt einfach nur, dass wenn sich die Breite der Spalte ändert, der ReminderPicker nicht sichtbar ist
         {
             DTPReminderPicker.Visible = false;
-            
+
         }
 
         private void DatagridView_Scroll(object sender, ScrollEventArgs e)
@@ -135,7 +136,7 @@ namespace ToDoApp.Views
         }
 
         private void TodosChanged(object sender, NotifyCollectionChangedEventArgs e)
-            //wenn sich die Todo-Einträge in der Gridview geändert haben, lösche den zuletzt eingetragenen Inhalt
+        //wenn sich die Todo-Einträge in der Gridview geändert haben, lösche den zuletzt eingetragenen Inhalt
         {
             SetupGridView();
         }
@@ -203,31 +204,29 @@ namespace ToDoApp.Views
             //für alle i = 0 und i kleiner der summe der elemente in todo, zähle hoch
             {
                 if (_todos[i].Id == (string)GridViewToDos[0, e.RowIndex].Value)
-                    //hier formuliert man bedingung für var todo und wenn dem so ist, dann setze i in _todos an stelle [i].
+                //hier formuliert man bedingung für var todo und wenn dem so ist, dann setze i in _todos an stelle [i].
                 {
                     todo = _todos[i];
                     break;
                 }
             }
+            var value = GridViewToDos[e.ColumnIndex, e.RowIndex].Value;
             switch (e.ColumnIndex)
             {
                 case 1:
-                    todo.Title = (string)GridViewToDos[e.ColumnIndex, e.RowIndex].Value;
+                    todo.Title = (string)value;
                     break;
                 case 2:
                     todo.DueDate = DateTime.Now; //TODO: Parse Date / use DateTimePicker
                     break;
 
                 case 3:
-                    todo.State = (States)GridViewToDos[e.ColumnIndex, e.RowIndex].Value;
+                    todo.State = (States)value;
                     break;
                 case 4:
-                    if (DateTime.TryParse($"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern}", out DateTime dt))
-                    {
-                        todo.Reminder = dt; //(DateTime)GridViewToDos[e.ColumnIndex, e.RowIndex].Value;
-                    }
-                    // todo : Addreminder 
-                    break;
+                   todo.Reminder = ((DateTimePicker)sender).Value;
+                   //Todo Add Reminder in windows
+                   break;
             }
             SetupGridView();
         }
