@@ -46,6 +46,7 @@ namespace ToDoApp.Views
             this.BtnSearch = new System.Windows.Forms.Button();
             this.LblGridView = new System.Windows.Forms.Label();
             this.LblMainTitle = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewToDos)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,13 +69,13 @@ namespace ToDoApp.Views
             this.GridViewToDos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewToDos.Location = new System.Drawing.Point(12, 97);
             this.GridViewToDos.Name = "GridViewToDos";
-            this.GridViewToDos.ReadOnly = false;
             this.GridViewToDos.RowHeadersVisible = false;
             this.GridViewToDos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.GridViewToDos.ShowCellToolTips = false;
             this.GridViewToDos.ShowEditingIcon = false;
             this.GridViewToDos.Size = new System.Drawing.Size(776, 286);
             this.GridViewToDos.TabIndex = 1;
+            this.GridViewToDos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewToDos_CellContentClick);
             // 
             // button1
             // 
@@ -139,7 +140,7 @@ namespace ToDoApp.Views
             // BtnSearch
             // 
             this.BtnSearch.Location = new System.Drawing.Point(713, 27);
-            this.BtnSearch.Name = "button3";
+            this.BtnSearch.Name = "BtnSearch";
             this.BtnSearch.Size = new System.Drawing.Size(75, 23);
             this.BtnSearch.TabIndex = 6;
             this.BtnSearch.Text = "Search";
@@ -149,7 +150,7 @@ namespace ToDoApp.Views
             // 
             this.LblGridView.AutoSize = true;
             this.LblGridView.Location = new System.Drawing.Point(12, 81);
-            this.LblGridView.Name = "label1";
+            this.LblGridView.Name = "LblGridView";
             this.LblGridView.Size = new System.Drawing.Size(84, 13);
             this.LblGridView.TabIndex = 7;
             this.LblGridView.Text = "Tasks for Today";
@@ -158,16 +159,27 @@ namespace ToDoApp.Views
             // 
             this.LblMainTitle.AutoSize = true;
             this.LblMainTitle.Location = new System.Drawing.Point(329, 36);
-            this.LblMainTitle.Name = "label2";
+            this.LblMainTitle.Name = "LblMainTitle";
             this.LblMainTitle.Size = new System.Drawing.Size(141, 13);
             this.LblMainTitle.TabIndex = 8;
             this.LblMainTitle.Text = "DAILY LIST TO DO TODAY";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(147, 415);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // StartpageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.LblMainTitle);
             this.Controls.Add(this.LblGridView);
             this.Controls.Add(this.BtnSearch);
@@ -202,6 +214,7 @@ namespace ToDoApp.Views
         private Button BtnSearch;
         private Label LblGridView;
         private Label LblMainTitle;
+        private Button button3;
     }
 
 }

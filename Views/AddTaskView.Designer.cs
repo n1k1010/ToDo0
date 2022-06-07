@@ -113,7 +113,7 @@ namespace ToDoApp.Views
 
         private System.Windows.Forms.Button BtnClose;
         private System.Windows.Forms.DataGridView GridViewTodos;
-        private System.Windows.Forms.DateTimePicker dtDueDate;
+        public System.Windows.Forms.DateTimePicker dtDueDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Titel;
         private System.Windows.Forms.TextBox tbTitle;

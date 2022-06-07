@@ -2,6 +2,6 @@
 {
     public enum States
     {
-        ToDo, InProgess, Done
+        ToDo, InProgress, Done
     }
 }

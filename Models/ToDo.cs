@@ -3,8 +3,13 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.ComponentModel;
 using ToDoApp.Utils;
+using System.Collections.ObjectModel;
+using ToDoApp.Views;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace ToDoApp.Models
+
 {
     public class ToDo
     {
@@ -27,6 +32,36 @@ namespace ToDoApp.Models
         public override string ToString()
         {
             return $"Title: {Title}, DueDate: {DueDate.ToLongDateString()}, State: {Enum.GetName(typeof(States), State)}";
+        }
+
+        public static bool DueItems (ToDo toDo)
+        {
+            return toDo.DueDate < DateTime.Today.AddDays(1) && toDo.State != States.Done;
+        }
+        
+        public static bool Tomorrow(ToDo toDo)
+        {
+            return toDo.DueDate >= DateTime.Today.AddDays(1) && toDo.DueDate < DateTime.Today.AddDays(2);
+        }
+
+        public static bool Done(ToDo toDo)
+        {
+            return toDo.State == States.Done;
+        }
+
+        public static bool InProgress (ToDo toDo)
+        {
+            return toDo.State == States.InProgress;
+        }
+
+       public static bool ThisMonth (ToDo toDo)
+        {
+            return toDo.DueDate.Year == DateTime.Now.Year && toDo.DueDate.Month == DateTime.Now.Month;         
+        }
+
+        public static bool ThisYear(ToDo toDo)
+        {
+            return toDo.DueDate.Year == DateTime.Now.Year;
         }
     }
 }
