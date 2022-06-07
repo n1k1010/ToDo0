@@ -34,6 +34,8 @@ namespace ToDoApp.Models
             return $"Title: {Title}, DueDate: {DueDate.ToLongDateString()}, State: {Enum.GetName(typeof(States), State)}";
         }
 
+        public static bool NoFilter(ToDo toDo) => true;
+
         public static bool DueItems (ToDo toDo)
         {
             return toDo.DueDate < DateTime.Today.AddDays(1) && toDo.State != States.Done;

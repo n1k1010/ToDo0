@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6FBA30D9-88B2-4289-ACB9-F19440DDAAB2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ToDo</RootNamespace>
-    <AssemblyName>ToDo</AssemblyName>
+    <RootNamespace>ToDoApp</RootNamespace>
+    <AssemblyName>ToDoApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ToDo.cs" />
+    <Compile Include="Utils\Filters.cs" />
     <Compile Include="Utils\States.cs" />
     <Compile Include="Views\AddTaskView.cs">
       <SubType>Form</SubType>

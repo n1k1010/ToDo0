@@ -21,78 +21,78 @@ namespace ToDoApp.Views
         readonly string _dateFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
         readonly DateTimePicker DTPReminderPicker = new DateTimePicker();
         readonly CheckBox reminderOff = new CheckBox();
-       
+
         Rectangle rectangle;
-        
-        
+
+
         string fileName = "todos.json";
-        
+
         private ObservableCollection<ToDo> _todos;
-         
+
         public StartpageView(ObservableCollection<ToDo> toDos)
-        
+
         {
             _todos = toDos;
-            
+
             InitializeComponent();
-            
+
             SetUpUI();
-            
+
 
         }
         private void SetUpUI()
         {
             SetupGridView();
-            
+
             _todos.CollectionChanged += TodosChanged;
-            
+
 
             //CollectionChanged: Fired when list changes: item added, removed, list cleared.
 
             LblMainTitle.Text = $"DAILY LIST TO DO TODAY {DateTime.Today.ToShortDateString()}";
-            
+
             GridViewToDos.Controls.Add(DTPReminderPicker);
             GridViewToDos.Controls.Add(reminderOff);
-           
+
             DTPReminderPicker.Visible = false;
             reminderOff.Visible = false;
-            
+
             DTPReminderPicker.Format = DateTimePickerFormat.Custom;
-            
+
             DTPReminderPicker.CustomFormat = $"{CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern} {CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern}";
-            
+
             DTPReminderPicker.Leave += new EventHandler(HandleReminderChange);
-            
+
             GridViewToDos.Scroll += DatagridView_Scroll;
             GridViewToDos.ColumnWidthChanged += DatagridView_ColumnWidthChanged;
-          
+
             GridViewToDos.CellClick += DatagridView_CellClick;
-            
+
 
         }
 
         private void CBDeleteReminder_CheckedChanged(object sender, EventArgs e)
         {
-            DTPicker.Value = DateTime.MinValue;
+            DTPReminderPicker.Value = DateTime.MinValue;
         }
 
         private Tuple<int, int> _lastCellClicked;
         //Instancevariable 
 
         private void HandleReminderChange(object sender, EventArgs e)
-        
+
         {
             GridViewToDos_CellValueChanged(sender, new DataGridViewCellEventArgs(4, _lastCellClicked.Item2));
 
         }
 
         private void DatagridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        
+
         {
             _lastCellClicked = new Tuple<int, int>(e.ColumnIndex, e.RowIndex);
-            
+
             switch (e.ColumnIndex)
-            
+
             {
                 case 4: // Column index of needed dateTimePicker cell
                     rectangle = GridViewToDos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true); //  
@@ -100,54 +100,54 @@ namespace ToDoApp.Views
                     //DTPReminderPicker.Size = new Size(rectangle.Width+rectangle.Height, rectangle.Height);
                     //DTPReminderPicker.Location = new Point(rectangle.X - rectangle.Y, rectangle.Y);
                     //foreach (e.RowIndex >1)
-                        //nimm size of row1 
+                    //nimm size of row1 
 
-                    DTPReminderPicker.Size = new Size(rectangle.Width-rectangle.Height, rectangle.Height); //  
-                   
-                    DTPReminderPicker.Location = new Point(rectangle.X+rectangle.Y, rectangle.Y); //  
+                    DTPReminderPicker.Size = new Size(rectangle.Width - rectangle.Height, rectangle.Height); //  
 
-                  
-                    
+                    DTPReminderPicker.Location = new Point(rectangle.X + rectangle.Y, rectangle.Y); //  
+
+
+
                     DTPReminderPicker.Visible = true;
 
-                    
-                    
-                    
-                    
+
+
+
+
 
                     reminderOff.Size = new Size(rectangle.Width, rectangle.Height); //  
-                    
+
                     reminderOff.Location = new Point(rectangle.X, rectangle.Y); //  
-                    
+
                     reminderOff.Visible = true;
 
                     break;
-                    
+
             }
         }
 
         private void DatagridView_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        
+
         {
             DTPReminderPicker.Visible = false;
             reminderOff.Visible = false;
         }
 
         private void DatagridView_Scroll(object sender, ScrollEventArgs e)
-        
+
         {
             DTPReminderPicker.Visible = false;
             reminderOff.Visible = false;
         }
 
         private void TodosChanged(object sender, NotifyCollectionChangedEventArgs e)
-        
+
         {
             SetupGridView();
         }
 
         private void SetupGridView()
-        
+
         {
             GridViewToDos.Columns.Clear();
             GridViewToDos.Rows.Clear();
@@ -162,7 +162,7 @@ namespace ToDoApp.Views
             date.HeaderText = "Fälligkeitsdatum";
 
             var state = new DataGridViewComboBoxColumn();
-            
+
             state.Name = nameof(ToDo.State);
             state.DataSource = Enum.GetValues(typeof(States));
             state.ValueType = typeof(States);
@@ -177,9 +177,6 @@ namespace ToDoApp.Views
             GridViewToDos.Columns.Add(state);
             GridViewToDos.Columns.Add(reminder);
             var filtered = _todos.Where(ToDo.DueItems);
-
-
-
 
             //_todos.Where(todo => todo.DueDate < DateTime.Today.AddDays(1) && todo.State != States.Done);
 
@@ -212,10 +209,10 @@ namespace ToDoApp.Views
             }
 
             for (int i = 0; i < _todos.Count; i++)
-            
+
             {
                 if (_todos[i].Id == (string)GridViewToDos[0, e.RowIndex].Value)
-                
+
                 {
                     todo = _todos[i];
                     break;
@@ -230,7 +227,7 @@ namespace ToDoApp.Views
                 case 2:
 
                     todo.DueDate = (DateTime)value;
-                   
+
                     //DateTime.Now;  //TODO: Parse Date / use DateTimePicker 
 
                     break;
@@ -238,12 +235,12 @@ namespace ToDoApp.Views
                     todo.State = (States)value;
                     break;
                 case 4:
-                   var dt = ((DateTimePicker)sender).Value;
+                    var dt = ((DateTimePicker)sender).Value;
                     if (dt == DateTime.MinValue)
                     {
                         todo.Reminder = null;
                     }
-                   else
+                    else
                     {
                         todo.Reminder = dt;
                     }
@@ -302,6 +299,12 @@ namespace ToDoApp.Views
             var filtered = _todos.Where(ToDo.Tomorrow);
             SetupGridView();
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var taskOverView = new TaskOverview(_todos);
+            taskOverView.ShowDialog();
         }
     }
 }
