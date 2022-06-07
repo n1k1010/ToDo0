@@ -70,6 +70,12 @@ namespace ToDoApp.Views
             
 
         }
+
+        private void CBDeleteReminder_CheckedChanged(object sender, EventArgs e)
+        {
+            DTPicker.Value = DateTime.MinValue;
+        }
+
         private Tuple<int, int> _lastCellClicked;
         //Instancevariable 
 
@@ -89,7 +95,6 @@ namespace ToDoApp.Views
             
             {
                 case 4: // Column index of needed dateTimePicker cell
-
                     rectangle = GridViewToDos.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true); //  
 
                     //DTPReminderPicker.Size = new Size(rectangle.Width+rectangle.Height, rectangle.Height);
@@ -229,7 +234,6 @@ namespace ToDoApp.Views
                     //DateTime.Now;  //TODO: Parse Date / use DateTimePicker 
 
                     break;
-
                 case 3:
                     todo.State = (States)value;
                     break;
