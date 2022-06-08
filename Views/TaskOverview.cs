@@ -59,8 +59,6 @@ namespace ToDoApp.Views
                 case Filters.MONTH: FilteredTasks = _todos.Where(ToDo.ThisMonth).ToList(); break;
                 case Filters.YEAR: FilteredTasks = _todos.Where(ToDo.ThisYear).ToList(); break;
                 case Filters.BEFORE: FilteredTasks = _todos.Where((todo)=>ToDo.Before(todo, dateTimePicker1.Value)).ToList(); break;
-
-
             }
             dateTimePicker1.Visible = (Filters)comboBox1.SelectedItem == Filters.BEFORE;
             RefreshGridView();
