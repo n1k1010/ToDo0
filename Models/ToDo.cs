@@ -65,6 +65,11 @@ namespace ToDoApp.Models
         {
             return toDo.DueDate.Year == DateTime.Now.Year;
         }
+
+        public static bool Before(ToDo toDo, DateTime before)
+        {
+            return toDo.DueDate < before ;
+        }
     }
 }
 

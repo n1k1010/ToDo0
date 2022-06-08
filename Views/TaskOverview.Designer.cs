@@ -30,6 +30,7 @@
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dgvTodos = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,19 +43,27 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // dgvTodos
             // 
             this.dgvTodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTodos.Location = new System.Drawing.Point(12, 39);
-            this.dgvTodos.Name = "dataGridView1";
+            this.dgvTodos.Name = "dgvTodos";
             this.dgvTodos.Size = new System.Drawing.Size(776, 399);
             this.dgvTodos.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(139, 13);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 2;
             // 
             // TaskOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dgvTodos);
             this.Controls.Add(this.comboBox1);
             this.Name = "TaskOverview";
@@ -68,5 +77,6 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dgvTodos;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

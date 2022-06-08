@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ToDoApp.Utils
+﻿namespace ToDoApp.Utils
 {
     public enum Filters
     {
@@ -12,5 +6,6 @@ namespace ToDoApp.Utils
         TODAY,
         MONTH,
         YEAR,
+        BEFORE
     }
 }
