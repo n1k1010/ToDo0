@@ -18,8 +18,8 @@ namespace ToDoApp.Views
         public Func<ToDo, bool> currentSearchFilter { get; private set; } = ToDo.NoFilter;
 
         public static DateTime searchdt = new DateTime();
-        
-        
+
+
 
 
 
@@ -32,10 +32,10 @@ namespace ToDoApp.Views
             searchgdv.AutoGenerateColumns = false;
             searchdt = searchDTPicker.Value;
         }
-            
-            
 
-        
+
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch ((States)((ComboBox)sender).SelectedValue)
@@ -43,7 +43,7 @@ namespace ToDoApp.Views
                 case States.ToDo: currentSearchFilter = ToDo.SearchToDo; break;
                 case States.InProgress: currentSearchFilter = ToDo.InProgress; break;
                 case States.Done: currentSearchFilter = ToDo.Done; break;
-                
+
 
             }
             RefreshGridView();
@@ -64,7 +64,7 @@ namespace ToDoApp.Views
             {
                 searchgdv.DataSource = null;
                 searchgdv.DataSource = searchFilter.ToList();
-                
+
 
             }
         }
@@ -83,10 +83,10 @@ namespace ToDoApp.Views
 
         }
 
-        
+
         private void SearchView_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox2_TextChanged_1(object sender, EventArgs e)
@@ -98,6 +98,10 @@ namespace ToDoApp.Views
         {
             //string searched_todo = "test";
             //textBox2.Text = searched_todo;
+            searchgdv.DataSource = _todos.Where(todo => todo.State == (States)comboBox1.SelectedItem 
+            && todo.DueDate.Year == searchDTPicker.Value.Year 
+            && todo.DueDate.DayOfYear == searchDTPicker.Value.DayOfYear).ToList();
+       
         }
     }
 }

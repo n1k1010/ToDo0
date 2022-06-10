@@ -28,7 +28,7 @@ namespace ToDoApp.Views
         string fileName = "todos.json";
 
         private ObservableCollection<ToDo> _todos;
-
+        private string LastSelectedId { get; set; }
         public StartpageView(ObservableCollection<ToDo> toDos)
 
         {
@@ -67,8 +67,18 @@ namespace ToDoApp.Views
             GridViewToDos.ColumnWidthChanged += DatagridView_ColumnWidthChanged;
 
             GridViewToDos.CellClick += DatagridView_CellClick;
+            GridViewToDos.SelectionChanged += DataGridView_SelectionChanged;
 
 
+        }
+
+        private void DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (GridViewToDos.SelectedCells.Count > 0)
+            {
+
+                LastSelectedId = (string)GridViewToDos.SelectedCells[0].OwningRow.Cells[0].Value;
+            }
         }
 
         private void CBDeleteReminder_CheckedChanged(object sender, EventArgs e)
@@ -266,9 +276,10 @@ namespace ToDoApp.Views
             new ToastContentBuilder()
     .AddArgument("action", "viewConversation")
     .AddArgument("conversationId", 9813)
+    .AddHeader("9813", _todos.FirstOrDefault(x => x.Id == LastSelectedId)?.Title ?? "Hier könnte ihre Werbung stehen", new ToastArguments() { })
     .AddText("Andrew sent you a picture")
     .AddText("Check this out, The Enchantments in Washington!")
-    .Schedule(DateTimeOffset.Now.AddMinutes(3));
+    .Schedule(DateTimeOffset.Now.AddSeconds(3));
 
 
         }
@@ -296,7 +307,7 @@ namespace ToDoApp.Views
 
         private void button3_Click(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -308,7 +319,7 @@ namespace ToDoApp.Views
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
