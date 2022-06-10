@@ -47,7 +47,7 @@ namespace ToDoApp.Views
             {
                 case Filters.NONE: CurrentFilter = ToDo.NoFilter; break;
                 case Filters.TODAY: CurrentFilter = ToDo.DueItems; break;
-                case Filters.MONTH: CurrentFilter = ToDo.ThisYear; break;
+                case Filters.MONTH: CurrentFilter = ToDo.ThisMonth; break;
                 case Filters.YEAR: CurrentFilter = ToDo.ThisYear; break;
 
             }
@@ -70,6 +70,11 @@ namespace ToDoApp.Views
                 dgvTodos.DataSource = FilteredTasks.ToList();
 
             }
+        }
+
+        private void dgvTodos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

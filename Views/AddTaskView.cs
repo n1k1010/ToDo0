@@ -48,5 +48,25 @@ namespace ToDoApp.Views
            
             this.Close();
         }
+
+        private void tbTitle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtDueDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddTaskView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -51,10 +51,11 @@ namespace ToDoApp.Views
             // dtDueDate
             // 
             this.dtDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-             this.dtDueDate.Location = new System.Drawing.Point(12, 69);
+            this.dtDueDate.Location = new System.Drawing.Point(12, 69);
             this.dtDueDate.Name = "dtDueDate";
             this.dtDueDate.Size = new System.Drawing.Size(276, 20);
             this.dtDueDate.TabIndex = 1;
+            this.dtDueDate.ValueChanged += new System.EventHandler(this.dtDueDate_ValueChanged);
             // 
             // label1
             // 
@@ -64,6 +65,7 @@ namespace ToDoApp.Views
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Fälligkeitsdatum";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Titel
             // 
@@ -80,6 +82,7 @@ namespace ToDoApp.Views
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(276, 20);
             this.tbTitle.TabIndex = 4;
+            this.tbTitle.TextChanged += new System.EventHandler(this.tbTitle_TextChanged);
             // 
             // btnAdd
             // 
@@ -104,6 +107,7 @@ namespace ToDoApp.Views
             this.Controls.Add(this.BtnClose);
             this.Name = "AddTaskView";
             this.Text = "Todo Hinzufügen";
+            this.Load += new System.EventHandler(this.AddTaskView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

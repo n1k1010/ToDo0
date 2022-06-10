@@ -37,7 +37,6 @@ namespace ToDoApp.Views
             this.BtnOpenAddTask = new System.Windows.Forms.Button();
             this.GridViewToDos = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,16 +45,15 @@ namespace ToDoApp.Views
             this.BtnSearch = new System.Windows.Forms.Button();
             this.LblGridView = new System.Windows.Forms.Label();
             this.LblMainTitle = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewToDos)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnOpenAddTask
             // 
-            this.BtnOpenAddTask.Location = new System.Drawing.Point(12, 415);
+            this.BtnOpenAddTask.Location = new System.Drawing.Point(15, 405);
             this.BtnOpenAddTask.Name = "BtnOpenAddTask";
-            this.BtnOpenAddTask.Size = new System.Drawing.Size(75, 23);
+            this.BtnOpenAddTask.Size = new System.Drawing.Size(75, 32);
             this.BtnOpenAddTask.TabIndex = 0;
             this.BtnOpenAddTask.Text = "New Todo";
             this.BtnOpenAddTask.UseVisualStyleBackColor = true;
@@ -79,21 +77,14 @@ namespace ToDoApp.Views
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(636, 398);
+            this.button1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button1.Location = new System.Drawing.Point(667, 396);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(121, 41);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "click to fire reminder";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(742, 389);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 206);
-            this.textBox1.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -130,7 +121,7 @@ namespace ToDoApp.Views
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 27);
+            this.button2.Location = new System.Drawing.Point(582, 36);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 23);
             this.button2.TabIndex = 5;
@@ -140,12 +131,13 @@ namespace ToDoApp.Views
             // 
             // BtnSearch
             // 
-            this.BtnSearch.Location = new System.Drawing.Point(713, 27);
+            this.BtnSearch.Location = new System.Drawing.Point(690, 36);
             this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnSearch.Size = new System.Drawing.Size(98, 23);
             this.BtnSearch.TabIndex = 6;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.UseVisualStyleBackColor = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // LblGridView
             // 
@@ -165,27 +157,15 @@ namespace ToDoApp.Views
             this.LblMainTitle.TabIndex = 8;
             this.LblMainTitle.Text = "DAILY LIST TO DO TODAY";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(147, 415);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // StartpageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.LblMainTitle);
             this.Controls.Add(this.LblGridView);
             this.Controls.Add(this.BtnSearch);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.GridViewToDos);
             this.Controls.Add(this.BtnOpenAddTask);
@@ -206,7 +186,6 @@ namespace ToDoApp.Views
         private System.Windows.Forms.Button BtnOpenAddTask;
         private System.Windows.Forms.DataGridView GridViewToDos;
         private Button button1;
-        private TextBox textBox1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem dateiToolStripMenuItem;
         private ToolStripMenuItem speichernToolStripMenuItem;
@@ -215,7 +194,6 @@ namespace ToDoApp.Views
         private Button BtnSearch;
         private Label LblGridView;
         private Label LblMainTitle;
-        private Button button3;
     }
 
 }

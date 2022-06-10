@@ -65,6 +65,19 @@ namespace ToDoApp.Models
         {
             return toDo.DueDate.Year == DateTime.Now.Year;
         }
+        
+        public static bool SearchToDo(ToDo toDo)
+        {
+            //SearchView searchView = new SearchView();
+            return toDo.State == States.ToDo && SearchView.searchdt == toDo.DueDate;
+        }
+       /* public static bool SearchDueDate(ToDo toDo)
+        {
+            
+            return toDo.DueDate == DateTime.Now;
+        }*/
     }
+
+
 }
 

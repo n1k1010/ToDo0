@@ -42,13 +42,14 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // dataGridView1
+            // dgvTodos
             // 
             this.dgvTodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTodos.Location = new System.Drawing.Point(12, 39);
-            this.dgvTodos.Name = "dataGridView1";
+            this.dgvTodos.Name = "dgvTodos";
             this.dgvTodos.Size = new System.Drawing.Size(776, 399);
             this.dgvTodos.TabIndex = 1;
+            this.dgvTodos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTodos_CellContentClick);
             // 
             // TaskOverview
             // 
