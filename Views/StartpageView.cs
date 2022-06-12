@@ -28,6 +28,7 @@ namespace ToDoApp.Views
         string fileName = "todos.json";
 
         private ObservableCollection<ToDo> _todos;
+        private string LastSelectedId { get; set; }
 
         public StartpageView(ObservableCollection<ToDo> toDos)
 
@@ -67,9 +68,21 @@ namespace ToDoApp.Views
             GridViewToDos.ColumnWidthChanged += DatagridView_ColumnWidthChanged;
 
             GridViewToDos.CellClick += DatagridView_CellClick;
+            GridViewToDos.SelectionChanged += DataGridView_SelectionChanged;
 
 
+        
+
+        void DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (GridViewToDos.SelectedCells.Count > 0)
+            {
+
+                LastSelectedId = (string)GridViewToDos.SelectedCells[0].OwningRow.Cells[0].Value;
+            }
         }
+
+    }
 
         private void CBDeleteReminder_CheckedChanged(object sender, EventArgs e)
         {
@@ -266,9 +279,9 @@ namespace ToDoApp.Views
             new ToastContentBuilder()
     .AddArgument("action", "viewConversation")
     .AddArgument("conversationId", 9813)
-    .AddText("Andrew sent you a picture")
-    .AddText("Check this out, The Enchantments in Washington!")
-    .Schedule(DateTimeOffset.Now.AddMinutes(3));
+    .AddText("tu das jetzt!")
+    .AddText("nicht später!")
+    .Schedule(DTPReminderPicker.Value) ;
 
 
         }

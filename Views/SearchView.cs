@@ -75,7 +75,7 @@ namespace ToDoApp.Views
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -97,7 +97,9 @@ namespace ToDoApp.Views
         private void search_Click(object sender, EventArgs e)
         {
             //string searched_todo = "test";
-            //textBox2.Text = searched_todo;
+            searchgdv.DataSource = _todos.Where(todo => todo.State == (States)comboBox1.SelectedItem
+            && todo.DueDate.Year == searchDTPicker.Value.Year
+            && todo.DueDate.DayOfYear == searchDTPicker.Value.DayOfYear).ToList();
         }
     }
 }
